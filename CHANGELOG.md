@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.0.2...v1.1.0) (2024-07-15)
+
+
+### 🚀 Features
+
+* Add version parts to output ([3363c14](https://github.com/NiverEngineering/is-release-commit-action/commit/3363c14495508999c26f839bf81b4e04767b2961))
+
 ## [1.0.2](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.0.1...v1.0.2) (2024-07-15)
 
 
