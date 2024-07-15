@@ -1,5 +1,5 @@
 {
-  "name": "maven-artifact-exists-action",
+  "name": "is-release-commit-action",
   "version": "1.0.2",
   "main": "dist/action.js",
   "type": "commonjs",
