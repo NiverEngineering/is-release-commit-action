@@ -6,3 +6,6 @@ node_modules
 
 # Project Specific
 dist-test
+
+# Test Output
+junit.xml

@@ -24,6 +24,22 @@ The content of the latest release tag. E.g. "v1.2.3" or the value of `fallback-t
 
 Whether the current commit is a release commit (`"true"`) or not (`"false"`)
 
+### `version`
+
+The actual version extracted from the git tag (`"v1.2.3"` -> `"1.2.3"`)
+
+### `major-version`
+
+The major part of the version extracted from the git tag (`"v1.2.3"` -> `"1"`)
+
+### `minor-version`
+
+The minor part of the version extracted from the git tag (`"v1.2.3"` -> `"2"`)
+
+### `bugfix-version`
+
+The minor part of the version extracted from the git tag (`"v1.2.3"` -> `"3"`)
+
 ## Example usage
 
 <!-- x-release-please-start-version -->

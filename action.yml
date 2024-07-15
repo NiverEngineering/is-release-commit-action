@@ -12,6 +12,14 @@ outputs:
     description: 'The content of the latest release tag. E.g. "v1.2.3"'
   is-release-commit:
     description: 'Whether the current commit is a release commit (`true`) or not (`false`)'
+  version:
+    description: 'The actual version extracted from the git tag ("v1.2.3" -> "1.2.3")'
+  major-version:
+    description: 'The major part of the version extracted from the git tag ("v1.2.3" -> "1")'
+  minor-version:
+    description: 'The minor part of the version extracted from the git tag ("v1.2.3" -> "2")'
+  bugfix-version:
+    description: 'The bugfix part of the version extracted from the git tag ("v1.2.3" -> "3")'
 runs:
   using: 'node20'
   main: 'dist/action.js'
