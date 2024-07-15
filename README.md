@@ -29,7 +29,7 @@ Whether the current commit is a release commit (`"true"`) or not (`"false"`)
 <!-- x-release-please-start-version -->
 
 ```yaml
-- uses: NiverEngineering/is-release-commit-action@v0.0.0
+- uses: NiverEngineering/is-release-commit-action@v1.0.0
   id: is-release-commit
 ```
 
