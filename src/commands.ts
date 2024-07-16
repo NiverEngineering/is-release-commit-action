@@ -1,24 +1,23 @@
+import {exec as _exec} from 'child_process';
 import {spawnCommand} from './spawn';
+import {promisify} from 'util';
+
+const exec = promisify(_exec);
 
 export const getLatestReleaseTag: (tagPrefix: string, fallback: string) => Promise<string> = async (tagPrefix, fallback) => {
   let outputOfGitCommand;
 
   try {
-    outputOfGitCommand = await spawnCommand(
-      'git',
-      'for-each-ref',
-      '--sort=-creatordate',
-      '--count',
-      '1',
-      '--format="%(refname:short)"',
-      `refs/tags/${tagPrefix ?? '*'}`,
+    outputOfGitCommand = await exec(
+      `git tag --format='%(objectname)^{}' | git cat-file --batch-check | awk '$2=="commit" { print $1 }' | git log --stdin --author-date-order --no-walk --decorate --oneline`,
     );
   } catch (error) {
     console.error(error);
     throw Error('Could not get latest tags.');
   }
 
-  const latestReleaseTag = outputOfGitCommand.stdout?.[0]?.replace(/["\s]/g, '');
+  console.debug(`Found the following git tags:\n\n${outputOfGitCommand.stdout}`);
+  const latestReleaseTag = outputOfGitCommand?.stdout?.match(/tag: (?<tag>v?[0-9]+\.[0-9]+\.[0-9]+)/)?.groups?.['tag'];
 
   if (latestReleaseTag) {
     return latestReleaseTag;
