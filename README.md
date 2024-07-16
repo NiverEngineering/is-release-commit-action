@@ -40,6 +40,11 @@ The minor part of the version extracted from the git tag (`"v1.2.3"` -> `"2"`)
 
 The minor part of the version extracted from the git tag (`"v1.2.3"` -> `"3"`)
 
+### `next-semantic-version`
+
+If `is-release-commit` is `"false"`, the next semantic version based on the commits since the last release is returned.
+Otherwise, the currently built version is returned.
+
 ## Example usage
 
 <!-- x-release-please-start-version -->

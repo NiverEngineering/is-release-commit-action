@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import {getLatestReleaseTag, isReleaseCommit} from './commands';
+import {getLatestReleaseTag, getNextSemanticVersion, isReleaseCommit} from './commands';
 import {extractVersionPartsFrom} from './version-part-extractor';
 
 // Main IIFE
@@ -12,6 +12,7 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     const releaseCommit = await isReleaseCommit(tagPrefix);
     const {major, minor, bugfix} = extractVersionPartsFrom(latestTag);
     const version = `${major}.${minor}.${bugfix}`;
+    const nextSemanticVersion = await getNextSemanticVersion(latestTag);
 
     console.log('Latest Tag:', latestTag);
     console.log('Is Release Commit:', releaseCommit);
@@ -19,6 +20,7 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     console.log('Major Part:', major);
     console.log('Minor Part:', minor);
     console.log('Bugfix Part:', bugfix);
+    console.log('Next Semantic Version', nextSemanticVersion);
 
     core.setOutput('latest-release-tag', latestTag);
     core.setOutput('is-release-commit', releaseCommit);
@@ -26,6 +28,7 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     core.setOutput('major-version', major);
     core.setOutput('minor-version', minor);
     core.setOutput('bugfix-version', bugfix);
+    core.setOutput('next-semantic-version', nextSemanticVersion);
   } catch (error) {
     // Fail the workflow run if an error occurs
     console.error(error);

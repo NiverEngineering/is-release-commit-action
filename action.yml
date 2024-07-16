@@ -2,11 +2,11 @@ name: 'Maven Artifact Existence Checker'
 description: 'Check whether an artifact exists within the given maven repository'
 inputs:
   release-tag-prefix:
-    description: 'A glob prefix to filter tag names. Set to "*" if all tags shall be taken into account'
-    default: 'v*'
+    description: 'A prefix to filter tag names. Set to "" (empty string) if all tags shall be taken into account'
+    default: 'v'
   fallback-tag:
     description: 'The fallback if no release tag could have been found.'
-    default: '0.0.0'
+    default: 'v0.0.0'
 outputs:
   latest-release-tag:
     description: 'The content of the latest release tag. E.g. "v1.2.3"'
@@ -20,6 +20,8 @@ outputs:
     description: 'The minor part of the version extracted from the git tag ("v1.2.3" -> "2")'
   bugfix-version:
     description: 'The bugfix part of the version extracted from the git tag ("v1.2.3" -> "3")'
+  next-semantic-version:
+    description: 'If is-release-commit is false, the next semantic version based on the commits since the last release is returned. Otherwise, the currently built version is returned.'
 runs:
   using: 'node20'
   main: 'dist/action.js'
