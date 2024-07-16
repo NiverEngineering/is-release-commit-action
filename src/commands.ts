@@ -84,7 +84,7 @@ export const getNextSemanticVersion: (baseTag: string) => Promise<string> = asyn
   }
 
   const commitMessagesAndBody = outputOfGitCommand.stdout;
-  core.startGroup('Found the following messages since tag "${baseTag}"');
+  core.startGroup(`Found the following commit messages since tag "${baseTag}"`);
   core.info(`${commitMessagesAndBody}`);
   core.endGroup();
 
