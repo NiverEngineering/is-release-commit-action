@@ -1,5 +1,4 @@
 import {exec as _exec} from 'child_process';
-import {spawnCommand} from './spawn';
 import {promisify} from 'util';
 
 const exec = promisify(_exec);
@@ -31,7 +30,7 @@ export const getLatestReleaseTag: (tagPrefix: string, fallback: string) => Promi
 
 export const isReleaseCommit: (tagPrefix: string) => Promise<boolean> = async (tagPrefix) => {
   try {
-    return (await spawnCommand('git', 'for-each-ref', '--points-at', 'HEAD', `refs/tags/${tagPrefix}`)).stdout.length > 0;
+    return (await exec(`git for-each-ref --points-at HEAD refs/tags/${tagPrefix}`)).stdout.length > 0;
   } catch (error) {
     console.error(error);
     throw Error('Could not determine whether the current commit is a release commit!');
