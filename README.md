@@ -50,7 +50,7 @@ Otherwise, the currently built version is returned.
 <!-- x-release-please-start-version -->
 
 ```yaml
-- uses: NiverEngineering/is-release-commit-action@v1.1.0
+- uses: NiverEngineering/is-release-commit-action@v1.2.0
   id: is-release-commit
 ```
 
