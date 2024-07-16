@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.2.0](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.1.0...v1.2.0) (2024-07-16)
+
+
+### 🚀 Features
+
+* Add calculation for next semantic version ([805e881](https://github.com/NiverEngineering/is-release-commit-action/commit/805e8819671451bff451138d8b0868f5471aad7e))
+* Sort tags by commit history instead of date the tag was created ([8977730](https://github.com/NiverEngineering/is-release-commit-action/commit/89777302940070b0b3a9e5aeac2b6de52acf7b82))
+* Use GitHub logging features instead of `console` ([c0630cf](https://github.com/NiverEngineering/is-release-commit-action/commit/c0630cf6e6b2a77437a32506f4cbf9d8082a5f11))
+
+
+### 🐛 Bug Fixes
+
+* Fix typos in log messages ([d23986e](https://github.com/NiverEngineering/is-release-commit-action/commit/d23986e2717c2ce0597236a36723c97c0eea8d88))
+
+
+### 🛠 Refactorings
+
+* Use `exec` instead of `spawn` to check whether to current commit is a release ([4972c1f](https://github.com/NiverEngineering/is-release-commit-action/commit/4972c1fb71fc137b9015bab7a866f0466d6e9139))
+
 ## [1.1.0](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.0.2...v1.1.0) (2024-07-15)
 
 
