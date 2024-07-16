@@ -14,13 +14,13 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     const version = `${major}.${minor}.${bugfix}`;
     const nextSemanticVersion = await getNextSemanticVersion(latestTag);
 
-    console.log('Latest Tag:', latestTag);
-    console.log('Is Release Commit:', releaseCommit);
-    console.log('Version from Tag:', version);
-    console.log('Major Part:', major);
-    console.log('Minor Part:', minor);
-    console.log('Bugfix Part:', bugfix);
-    console.log('Next Semantic Version', nextSemanticVersion);
+    core.info(`Latest Tag: ${latestTag}`);
+    core.info(`Is Release Commit: ${releaseCommit}`);
+    core.info(`Version from Tag: ${version}`);
+    core.info(`Major Part: ${major}`);
+    core.info(`Minor Part: ${minor}`);
+    core.info(`Bugfix Part: ${bugfix}`);
+    core.info(`Next Semantic Version: ${nextSemanticVersion}`);
 
     core.setOutput('latest-release-tag', latestTag);
     core.setOutput('is-release-commit', releaseCommit);
@@ -31,7 +31,11 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     core.setOutput('next-semantic-version', nextSemanticVersion);
   } catch (error) {
     // Fail the workflow run if an error occurs
-    console.error(error);
-    if (error instanceof Error) core.setFailed(error.message);
+    if (error instanceof Error) {
+      core.error(error);
+      core.setFailed(error.message);
+    } else {
+      core.setFailed('Unknown error occurred');
+    }
   }
 })();

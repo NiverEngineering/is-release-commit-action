@@ -4,11 +4,6 @@ import {ExecException} from 'child_process';
 
 jest.mock('child_process');
 
-// Swallow console outputs
-jest.spyOn(console, 'error').mockImplementation(() => {});
-jest.spyOn(console, 'debug').mockImplementation(() => {});
-jest.spyOn(console, 'warn').mockImplementation(() => {});
-
 describe('commands', () => {
   describe('getLatestReleaseTag', () => {
     it('should choose the correct tag if multiple tags are present', async () => {
