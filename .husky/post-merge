@@ -1,2 +1,4 @@
-#!/usr/bin/env sh
-. "${0%/*}/h"
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+git tag -l | xargs git tag -d && git fetch --tags
