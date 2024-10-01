@@ -45,6 +45,10 @@ The minor part of the version extracted from the git tag (`"v1.2.3"` -> `"3"`)
 If `is-release-commit` is `"false"`, the next semantic version based on the commits since the last release is returned.
 Otherwise, the currently built version is returned.
 
+### `current-commit-sha`
+
+The short SHA of the current commit, i.e. `"d09e6f6"`
+
 ## Example usage
 
 <!-- x-release-please-start-version -->
