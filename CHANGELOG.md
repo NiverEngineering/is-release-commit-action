@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.2.0...v1.3.0) (2024-10-01)
+
+
+### 🚀 Features
+
+* Add short sha of current commit to action output ([d09e6f6](https://github.com/NiverEngineering/is-release-commit-action/commit/d09e6f62030896783928c532c54421dfd89337c9))
+
 ## [1.2.0](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.1.0...v1.2.0) (2024-07-16)
 
 
