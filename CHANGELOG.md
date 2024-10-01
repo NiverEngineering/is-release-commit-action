@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.0...v1.3.1) (2024-10-01)
+
+
+### 🐛 Bug Fixes
+
+* Add new output to `README.md` and `action.yml` ([1b0f921](https://github.com/NiverEngineering/is-release-commit-action/commit/1b0f921be6531bf6adac8ff58f2e22bd08841f4a))
+
 ## [1.3.0](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.2.0...v1.3.0) (2024-10-01)
 
 
