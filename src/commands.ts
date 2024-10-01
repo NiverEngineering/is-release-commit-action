@@ -103,3 +103,19 @@ export const getNextSemanticVersion: (baseTag: string) => Promise<string> = asyn
 
   return `${major}.${minor}.${bugfix}`;
 };
+
+export const getCurrentCommitSha: () => Promise<string> = async () => {
+  let outputOfGitCommand;
+
+  try {
+    outputOfGitCommand = await exec(`git rev-parse --short HEAD`);
+  } catch (error) {
+    if (error instanceof Error) {
+      core.error(error);
+    }
+
+    throw Error(`Could not get current commit sha`);
+  }
+
+  return outputOfGitCommand.stdout;
+};

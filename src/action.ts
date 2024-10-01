@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import {getLatestReleaseTag, getNextSemanticVersion, isReleaseCommit} from './commands';
+import {getCurrentCommitSha, getLatestReleaseTag, getNextSemanticVersion, isReleaseCommit} from './commands';
 import {extractVersionPartsFrom} from './version-part-extractor';
 
 // Main IIFE
@@ -13,6 +13,7 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     const {major, minor, bugfix} = extractVersionPartsFrom(latestTag);
     const version = `${major}.${minor}.${bugfix}`;
     const nextSemanticVersion = await getNextSemanticVersion(latestTag);
+    const currentCommitSha = await getCurrentCommitSha();
 
     core.info(`Latest Tag: ${latestTag}`);
     core.info(`Is Release Commit: ${releaseCommit}`);
@@ -21,6 +22,7 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     core.info(`Minor Part: ${minor}`);
     core.info(`Bugfix Part: ${bugfix}`);
     core.info(`Next Semantic Version: ${nextSemanticVersion}`);
+    core.info(`Current Commit SHA: ${currentCommitSha}`);
 
     core.setOutput('latest-release-tag', latestTag);
     core.setOutput('is-release-commit', releaseCommit);
@@ -29,6 +31,7 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     core.setOutput('minor-version', minor);
     core.setOutput('bugfix-version', bugfix);
     core.setOutput('next-semantic-version', nextSemanticVersion);
+    core.setOutput('current-commit-sha', currentCommitSha);
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) {
