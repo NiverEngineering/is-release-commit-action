@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.1...v1.3.2) (2024-10-08)
+
+
+### 🐛 Bug Fixes
+
+* Fix not correctly determined release commit ([f7a71bd](https://github.com/NiverEngineering/is-release-commit-action/commit/f7a71bdfca3a30eefa18ff6745d84057921375f2))
+
 ## [1.3.1](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.0...v1.3.1) (2024-10-01)
 
 
