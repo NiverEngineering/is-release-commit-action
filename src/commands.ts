@@ -50,7 +50,7 @@ export const getLatestReleaseTag: (tagPrefix: string, fallback?: string) => Prom
 
 export const isReleaseCommit: (tagPrefix: string) => Promise<boolean> = async (tagPrefix) => {
   try {
-    return (await exec(`git for-each-ref --points-at HEAD refs/tags/${tagPrefix}`)).stdout.length > 0;
+    return (await exec(`git for-each-ref --points-at HEAD 'refs/tags/${tagPrefix ?? ''}[0-9].[0-9].[0-9]*'`)).stdout.length > 0;
   } catch (error) {
     if (error instanceof Error) {
       core.error(error);

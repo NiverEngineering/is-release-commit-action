@@ -14,7 +14,7 @@ describe('commands', () => {
 1a82b89 (tag: v1.0.0) chore: Release 1.0.0`,
       });
 
-      expect(await getLatestReleaseTag('v*', '0.0.0')).toEqual('v1.1.0');
+      expect(await getLatestReleaseTag('v', '0.0.0')).toEqual('v1.1.0');
     });
 
     it('should fallback to given value if no tags could have been found', async () => {
@@ -22,7 +22,7 @@ describe('commands', () => {
         stdout: ``,
       });
 
-      expect(await getLatestReleaseTag('v*', 'v0.0.0')).toEqual('v0.0.0');
+      expect(await getLatestReleaseTag('v', 'v0.0.0')).toEqual('v0.0.0');
     });
 
     it('should throw error for falsy fallback value', async () => {
@@ -30,7 +30,7 @@ describe('commands', () => {
         stdout: ``,
       });
 
-      await expect(getLatestReleaseTag('v*', '')).rejects.toThrow(
+      await expect(getLatestReleaseTag('v', '')).rejects.toThrow(
         'Could not find any matching tag and fallback is either not defined or invalid! Fallback Value: ""',
       );
     });
@@ -40,7 +40,7 @@ describe('commands', () => {
         stdout: ``,
       });
 
-      await expect(getLatestReleaseTag('v*', undefined)).rejects.toThrow(
+      await expect(getLatestReleaseTag('v', undefined)).rejects.toThrow(
         'Could not find any matching tag and fallback is either not defined or invalid! Fallback Value: undefined',
       );
     });
@@ -50,7 +50,7 @@ describe('commands', () => {
         stdout: ``,
       });
 
-      await expect(getLatestReleaseTag('v*', 'blubb')).rejects.toThrow(
+      await expect(getLatestReleaseTag('v', 'blubb')).rejects.toThrow(
         'Could not find any matching tag and fallback is either not defined or invalid! Fallback Value: "blubb"',
       );
     });
@@ -60,7 +60,7 @@ describe('commands', () => {
         error: Error('Something went wrong...'),
       });
 
-      await expect(getLatestReleaseTag('v*', 'v0.0.0')).rejects.toThrow('Could not get latest tags.');
+      await expect(getLatestReleaseTag('v', 'v0.0.0')).rejects.toThrow('Could not get latest tags.');
     });
   });
 
@@ -70,7 +70,7 @@ describe('commands', () => {
         stdout: `a7730ce591e5494a455a5283d75eddca8dc80b98 commit refs/tags/v1.2.3`,
       });
 
-      expect(await isReleaseCommit('v*')).toBe(true);
+      expect(await isReleaseCommit('v')).toBe(true);
     });
 
     it('return false if no tag starting with "v" and pointing at HEAD could be found', async () => {
@@ -78,7 +78,7 @@ describe('commands', () => {
         stdout: ``,
       });
 
-      expect(await isReleaseCommit('v*')).toBe(false);
+      expect(await isReleaseCommit('v')).toBe(false);
     });
 
     it('return false if no tag starting with "v" and pointing at HEAD could be found', async () => {
@@ -86,7 +86,7 @@ describe('commands', () => {
         error: Error('Something went wrong...'),
       });
 
-      await expect(isReleaseCommit('v*')).rejects.toThrow('Could not determine whether the current commit is a release commit!');
+      await expect(isReleaseCommit('v')).rejects.toThrow('Could not determine whether the current commit is a release commit!');
     });
   });
 
