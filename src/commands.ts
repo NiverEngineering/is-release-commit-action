@@ -117,5 +117,5 @@ export const getCurrentCommitSha: () => Promise<string> = async () => {
     throw Error(`Could not get current commit sha`);
   }
 
-  return outputOfGitCommand.stdout;
+  return outputOfGitCommand.stdout?.trim();
 };
