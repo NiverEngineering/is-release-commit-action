@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.7](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.6...v1.3.7) (2024-12-13)
+
+
+### 🐛 Bug Fixes
+
+* Streamline GitHub marketplace action name ([a7b923a](https://github.com/NiverEngineering/is-release-commit-action/commit/a7b923ab04693e77b40adc7193b08db13cf90a3f))
+
 ## [1.3.6](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.5...v1.3.6) (2024-12-13)
 
 
