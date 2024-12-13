@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.6](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.5...v1.3.6) (2024-12-13)
+
+
+### 🐛 Bug Fixes
+
+* Fix `name` and `description` in `action.yml` ([e24666c](https://github.com/NiverEngineering/is-release-commit-action/commit/e24666c63e6b13811e1a591e23a8a1950e19e7d0))
+
 ## [1.3.5](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.4...v1.3.5) (2024-12-13)
 
 
