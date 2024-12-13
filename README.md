@@ -51,10 +51,10 @@ The short SHA of the current commit, i.e. `"d09e6f6"`
 
 ## Example usage
 
-<!-- x-release-please-start-version -->
+<!-- x-release-please-start-major -->
 
 ```yaml
-- uses: NiverEngineering/is-release-commit-action@v1.3.3
+- uses: NiverEngineering/is-release-commit-action@v1
   id: is-release-commit
 ```
 
