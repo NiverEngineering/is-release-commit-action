@@ -1,4 +1,4 @@
-name: 'Is Release Commit Action'
+name: 'Is Release Commit'
 description: 'Check whether the commit which is currently built is a release commit.'
 branding:
   icon: 'package'
