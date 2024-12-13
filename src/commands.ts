@@ -33,7 +33,7 @@ export const getLatestReleaseTag: (tagPrefix: string, fallback?: string) => Prom
   core.endGroup();
 
   const latestReleaseTag = outputOfGitCommand?.stdout?.match(
-    new RegExp(`tag: (?<tag>${tagPrefix ? tagPrefix : ''}[0-9]+\.[0-9]+\.[0-9]+)`),
+    new RegExp(`tag: (?<tag>${tagPrefix ? tagPrefix : ''}[0-9]+\\.[0-9]+\\.[0-9]+)`),
   )?.groups?.['tag'];
 
   if (latestReleaseTag) {
