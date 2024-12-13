@@ -1,6 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 # Since the dist folder is checked in we make sure to run a build before commiting
 npm run build
 git add dist
