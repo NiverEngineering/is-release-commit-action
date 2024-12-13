@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.4](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.3...v1.3.4) (2024-12-13)
+
+
+### 📖 Documentation
+
+* Use major version only in readme example ([b490cc8](https://github.com/NiverEngineering/is-release-commit-action/commit/b490cc89672eb670343da5c019aa73437e9a701c))
+
+
+### 📦 Build System & Dependencies
+
+* Add Dependabot ([f247710](https://github.com/NiverEngineering/is-release-commit-action/commit/f2477109afb0f9c72edbcde38ca82c74b0e2a295))
+* Update dependencies ([6f39441](https://github.com/NiverEngineering/is-release-commit-action/commit/6f39441e556fddba12210969416cf69a510f0c2e))
+
 ## [1.3.3](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.2...v1.3.3) (2024-11-04)
 
 
