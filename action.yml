@@ -1,5 +1,5 @@
-name: 'Maven Artifact Existence Checker'
-description: 'Check whether an artifact exists within the given maven repository'
+name: 'Is Release Commit Action'
+description: 'Check whether the commit which is currently built is a release commit.'
 branding:
   icon: 'package'
   color: 'orange'
