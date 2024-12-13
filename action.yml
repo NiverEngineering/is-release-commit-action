@@ -1,5 +1,8 @@
 name: 'Maven Artifact Existence Checker'
 description: 'Check whether an artifact exists within the given maven repository'
+branding:
+  icon: 'package'
+  color: 'orange'
 inputs:
   release-tag-prefix:
     description: 'A prefix to filter tag names. Set to "" (empty string) if all tags shall be taken into account'
@@ -25,5 +28,5 @@ outputs:
   current-commit-sha:
     description: 'The short SHA of the current commit, i.e. "d09e6f6"'
 runs:
-  using: 'node20'
+  using: 'node22'
   main: 'dist/action.js'
