@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.5](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.4...v1.3.5) (2024-12-13)
+
+
+### 🐛 Bug Fixes
+
+* Fix linting with new config ([64894bf](https://github.com/NiverEngineering/is-release-commit-action/commit/64894bf88b53eee295e72c088de5c3c73c4431f5))
+
 ## [1.3.4](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.3...v1.3.4) (2024-12-13)
 
 
