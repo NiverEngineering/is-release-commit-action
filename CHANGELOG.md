@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.8](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.7...v1.3.8) (2024-12-20)
+
+
+### ✅ Tests
+
+* Remove console outputs in tests ([a0cb257](https://github.com/NiverEngineering/is-release-commit-action/commit/a0cb2573a3cbcf2bdcccb29ac1ab1eb77293aa6d))
+
+
+### 📦 Build System & Dependencies
+
+* **deps-dev:** Bump @commitlint/cli from 19.6.0 to 19.6.1 ([c3ece69](https://github.com/NiverEngineering/is-release-commit-action/commit/c3ece69349d27bf46b82258ca49c38831cf435f5))
+* **deps-dev:** Bump @eslint/js from 9.16.0 to 9.17.0 ([483423c](https://github.com/NiverEngineering/is-release-commit-action/commit/483423ce533d290b0bf0e0c664394967fd5eda69))
+* **deps-dev:** Bump @typescript-eslint/eslint-plugin ([984ac50](https://github.com/NiverEngineering/is-release-commit-action/commit/984ac50eda02319009642d741c51b00eaeffb28c))
+* **deps-dev:** Bump @typescript-eslint/parser from 8.18.0 to 8.18.1 ([bbd1b91](https://github.com/NiverEngineering/is-release-commit-action/commit/bbd1b918217dfc838218950a7b787130b9aa49b1))
+* **deps-dev:** Bump eslint from 9.16.0 to 9.17.0 ([b117458](https://github.com/NiverEngineering/is-release-commit-action/commit/b117458e9543aec078d3ecbbb7ffee932d939cad))
+* Update dependencies and `package-lock.json` ([345a03f](https://github.com/NiverEngineering/is-release-commit-action/commit/345a03f14ac732e9f2df5fd51083517f00fc86e0))
+
 ## [1.3.7](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.6...v1.3.7) (2024-12-13)
 
 
