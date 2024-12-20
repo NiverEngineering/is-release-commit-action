@@ -1,9 +1,6 @@
 name: build
 on:
   push:
-    branches:
-      - main
-      - feature/**
 jobs:
   build:
     runs-on: ubuntu-latest
