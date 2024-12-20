@@ -3,6 +3,7 @@ import * as child_process from 'child_process';
 import {ExecException} from 'child_process';
 
 jest.mock('child_process');
+jest.mock('@actions/core');
 
 describe('commands', () => {
   describe('getLatestReleaseTag', () => {
