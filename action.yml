@@ -28,5 +28,5 @@ outputs:
   current-commit-sha:
     description: 'The short SHA of the current commit, i.e. "d09e6f6"'
 runs:
-  using: 'node22'
+  using: 'node20'
   main: 'dist/action.js'
