@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.9](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.8...v1.3.9) (2025-01-17)
+
+
+### 🐛 Bug Fixes
+
+* Downgrading to `node20` since `node22` is not supported yet ([d259b1e](https://github.com/NiverEngineering/is-release-commit-action/commit/d259b1efbbfc9387c545847c183ea6fffe0e26c0))
+
+
+### 📦 Build System & Dependencies
+
+* Update dependencies ([b88079d](https://github.com/NiverEngineering/is-release-commit-action/commit/b88079d141dac9392fb08b770cf48a4831319221))
+
 ## [1.3.8](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.7...v1.3.8) (2024-12-20)
 
 
