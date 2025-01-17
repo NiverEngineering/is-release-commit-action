@@ -76,11 +76,30 @@ export const getNextSemanticVersion: (baseTag: string) => Promise<string> = asyn
   try {
     outputOfGitCommand = await exec(`git log ${baseTag}..HEAD --pretty=format:%B`);
   } catch (error) {
+    let genericError = true;
+
     if (error instanceof Error) {
-      core.error(error);
+      if (error.message.includes(`ambiguous argument '${baseTag}..HEAD'`)) {
+        genericError = false;
+      } else {
+        core.error(error);
+      }
     }
 
-    throw Error(`Could not get messages since git tag "${baseTag}".`);
+    if (genericError) {
+      throw Error(`Could not get messages since git tag "${baseTag}" to determine next version..`);
+    } else {
+      // Tag was not found. Most probably this is a new repo and the fallback tag was not set on the first commit. Trying to read all commits.
+      try {
+        outputOfGitCommand = await exec(`git log ${baseTag}..HEAD --pretty=format:%B`);
+      } catch (error) {
+        if (error instanceof Error) {
+          core.error(error);
+        }
+
+        throw Error(`Could not determine next version.`);
+      }
+    }
   }
 
   const commitMessagesAndBody = outputOfGitCommand.stdout;
