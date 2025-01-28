@@ -15,7 +15,8 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     const nextSemanticVersion = await getNextSemanticVersion(latestTag);
     const currentCommitSha = await getCurrentCommitSha();
 
-    core.info(`Latest Tag: ${latestTag}`);
+    core.info(`Latest Tag: ${latestTag.tag}`);
+    core.info(`Is Fallback Tag: ${latestTag.isFallback}`);
     core.info(`Is Release Commit: ${releaseCommit}`);
     core.info(`Version from Tag: ${version}`);
     core.info(`Major Part: ${major}`);
@@ -24,7 +25,8 @@ import {extractVersionPartsFrom} from './version-part-extractor';
     core.info(`Next Semantic Version: ${nextSemanticVersion}`);
     core.info(`Current Commit SHA: ${currentCommitSha}`);
 
-    core.setOutput('latest-release-tag', latestTag);
+    core.setOutput('latest-release-tag', latestTag.tag);
+    core.setOutput('is-fallback-tag', latestTag.isFallback);
     core.setOutput('is-release-commit', releaseCommit);
     core.setOutput('version', version);
     core.setOutput('major-version', major);

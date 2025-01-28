@@ -13,6 +13,8 @@ inputs:
 outputs:
   latest-release-tag:
     description: 'The content of the latest release tag. E.g. "v1.2.3"'
+  is-fallback-tag:
+    description: 'Indicates whether the `latest-release-tag` is the actually found (`false`) or the fallback tag (`true`)'
   is-release-commit:
     description: 'Whether the current commit is a release commit (`true`) or not (`false`)'
   version:

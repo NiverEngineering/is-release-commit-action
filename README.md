@@ -20,6 +20,10 @@ Default: `0.0.0`
 
 The content of the latest release tag. E.g. "v1.2.3" or the value of `fallback-tag` if no tag could be found.
 
+### `is-fallback-tag`
+
+Indicates whether the `latest-release-tag` is the actually found (`false`) or the fallback tag (`true`)
+
 ### `is-release-commit`
 
 Whether the current commit is a release commit (`"true"`) or not (`"false"`)
