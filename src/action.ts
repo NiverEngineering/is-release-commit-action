@@ -10,7 +10,7 @@ import {extractVersionPartsFrom} from './version-part-extractor';
 
     const latestTag = await getLatestReleaseTag(tagPrefix, fallback);
     const releaseCommit = await isReleaseCommit(tagPrefix);
-    const {major, minor, bugfix} = extractVersionPartsFrom(latestTag);
+    const {major, minor, bugfix} = extractVersionPartsFrom(latestTag.tag);
     const version = `${major}.${minor}.${bugfix}`;
     const nextSemanticVersion = await getNextSemanticVersion(latestTag);
     const currentCommitSha = await getCurrentCommitSha();

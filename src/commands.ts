@@ -14,7 +14,13 @@ const exec = async (command: string) =>
     }),
   );
 
-export const getLatestReleaseTag: (tagPrefix: string, fallback?: string) => Promise<string> = async (tagPrefix, fallback) => {
+export const getLatestReleaseTag: (
+  tagPrefix: string,
+  fallback?: string,
+) => Promise<{
+  tag: string;
+  isFallback: boolean;
+}> = async (tagPrefix, fallback) => {
   let outputOfGitCommand;
 
   try {
@@ -37,10 +43,10 @@ export const getLatestReleaseTag: (tagPrefix: string, fallback?: string) => Prom
   )?.groups?.['tag'];
 
   if (latestReleaseTag) {
-    return latestReleaseTag;
+    return {tag: latestReleaseTag, isFallback: false};
   } else if (fallback && fallback.match(/v?[0-9]+\.[0-9]+\.[0-9]+/)) {
     core.warning(`Could not get latest release release tag. Falling back to '${fallback}'`);
-    return fallback;
+    return {tag: fallback, isFallback: true};
   } else {
     throw Error(
       `Could not find any matching tag and fallback is either not defined or invalid! Fallback Value: ${typeof fallback === 'string' ? `"${fallback}"` : fallback}`,
@@ -60,7 +66,10 @@ export const isReleaseCommit: (tagPrefix: string) => Promise<boolean> = async (t
   }
 };
 
-export const getNextSemanticVersion: (baseTag: string) => Promise<string> = async (baseTag) => {
+export const getNextSemanticVersion: (baseTag: {tag: string; isFallback: boolean}) => Promise<string> = async ({
+  tag: baseTag,
+  isFallback,
+}) => {
   let {major, minor, bugfix} = Object.entries(extractVersionPartsFrom(baseTag))
     .map<[string, number]>(([identifier, version]) => [identifier, Number.parseInt(version)])
     .reduce(
@@ -75,30 +84,19 @@ export const getNextSemanticVersion: (baseTag: string) => Promise<string> = asyn
 
   try {
     outputOfGitCommand = await exec(`git log ${baseTag}..HEAD --pretty=format:%B`);
-  } catch (error) {
-    let genericError = true;
+  } catch (error1) {
+    if (isFallback) {
+      core.warning(
+        `Could not get messages for fallback tag "${baseTag}". Most probably this is a new repo without any tags... Trying to read all commits.`,
+      );
 
-    if (error instanceof Error) {
-      if (error.message.includes(`ambiguous argument '${baseTag}..HEAD'`)) {
-        genericError = false;
-      } else {
-        core.error(error);
-      }
-    }
-
-    if (genericError) {
-      throw Error(`Could not get messages since git tag "${baseTag}" to determine next version..`);
-    } else {
-      // Tag was not found. Most probably this is a new repo and the fallback tag was not set on the first commit. Trying to read all commits.
       try {
-        outputOfGitCommand = await exec(`git log ${baseTag}..HEAD --pretty=format:%B`);
-      } catch (error) {
-        if (error instanceof Error) {
-          core.error(error);
-        }
-
-        throw Error(`Could not determine next version.`);
+        outputOfGitCommand = await exec(`git --no-pager log --pretty=format:%B`);
+      } catch (error2) {
+        throw Error(`Could not determine next version.`, {cause: error2});
       }
+    } else {
+      throw Error(`Could not get messages since git tag "${baseTag}" to determine next version.`);
     }
   }
 

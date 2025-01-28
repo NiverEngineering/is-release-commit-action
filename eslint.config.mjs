@@ -4,6 +4,13 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config({
   files: ['src/**/*.ts'],
   extends: [eslint.configs.recommended, ...tseslint.configs.recommended],
-  rules: {},
+  rules: {
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        caughtErrors: 'none',
+      },
+    ],
+  },
   ignores: ['dist'],
 });

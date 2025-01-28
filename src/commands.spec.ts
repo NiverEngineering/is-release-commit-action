@@ -15,7 +15,7 @@ describe('commands', () => {
 1a82b89 (tag: v1.0.0) chore: Release 1.0.0`,
       });
 
-      expect(await getLatestReleaseTag('v', '0.0.0')).toEqual('v1.1.0');
+      expect(await getLatestReleaseTag('v', '0.0.0')).toEqual({tag: 'v1.1.0', isFallback: false});
     });
 
     it('should fallback to given value if no tags could have been found', async () => {
@@ -23,7 +23,7 @@ describe('commands', () => {
         stdout: ``,
       });
 
-      expect(await getLatestReleaseTag('v', 'v0.0.0')).toEqual('v0.0.0');
+      expect(await getLatestReleaseTag('v', 'v0.0.0')).toEqual({tag: 'v0.0.0', isFallback: true});
     });
 
     it('should throw error for falsy fallback value', async () => {
@@ -97,7 +97,7 @@ describe('commands', () => {
         stdout: ``,
       });
 
-      expect(await getNextSemanticVersion('v1.2.3')).toEqual('1.2.3');
+      expect(await getNextSemanticVersion({tag: 'v1.2.3', isFallback: false})).toEqual('1.2.3');
     });
 
     it('should calculate next bugfix version if messages do not contain any "feat" or breaking changes', async () => {
@@ -109,7 +109,7 @@ refactor: Refactor everything
 build: Update dependencies`,
       });
 
-      expect(await getNextSemanticVersion('v1.2.3')).toEqual('1.2.4');
+      expect(await getNextSemanticVersion({tag: 'v1.2.3', isFallback: false})).toEqual('1.2.4');
     });
 
     it('should calculate next feature version if messages contain a "feat" commit', async () => {
@@ -119,7 +119,7 @@ build: Update dependencies`,
 feat: Add a fancy feature`,
       });
 
-      expect(await getNextSemanticVersion('v1.2.3')).toEqual('1.3.0');
+      expect(await getNextSemanticVersion({tag: 'v1.2.3', isFallback: false})).toEqual('1.3.0');
     });
 
     it('should calculate next feature version if messages contain a "feat" commit with scope', async () => {
@@ -129,7 +129,7 @@ feat: Add a fancy feature`,
 feat(api): Add a fancy feature`,
       });
 
-      expect(await getNextSemanticVersion('v1.2.3')).toEqual('1.3.0');
+      expect(await getNextSemanticVersion({tag: 'v1.2.3', isFallback: false})).toEqual('1.3.0');
     });
 
     it('should calculate next major version if messages contain a commit with "!"', async () => {
@@ -139,7 +139,7 @@ feat(api): Add a fancy feature`,
 feat!: Add a breaking feature`,
       });
 
-      expect(await getNextSemanticVersion('v1.2.3')).toEqual('2.0.0');
+      expect(await getNextSemanticVersion({tag: 'v1.2.3', isFallback: false})).toEqual('2.0.0');
     });
 
     it('should calculate next major version if messages contain a commit with "!" and scope', async () => {
@@ -149,7 +149,7 @@ feat!: Add a breaking feature`,
 feat(api)!: Add a breaking feature`,
       });
 
-      expect(await getNextSemanticVersion('v1.2.3')).toEqual('2.0.0');
+      expect(await getNextSemanticVersion({tag: 'v1.2.3', isFallback: false})).toEqual('2.0.0');
     });
 
     it('should calculate next major version if a message\'s body contains "BREAKING CHANGE:"', async () => {
@@ -161,13 +161,15 @@ feat: Add a breaking feature.
 BREAKING CHANGE: This is a breaking change`,
       });
 
-      expect(await getNextSemanticVersion('v1.2.3')).toEqual('2.0.0');
+      expect(await getNextSemanticVersion({tag: 'v1.2.3', isFallback: false})).toEqual('2.0.0');
     });
 
     it('should throw an error, if the git command fails', async () => {
       mockExecCallWith({error: Error('Git command failed...')});
 
-      await expect(getNextSemanticVersion('v1.2.3')).rejects.toThrow('Could not get messages since git tag "v1.2.3".');
+      await expect(getNextSemanticVersion({tag: 'v1.2.3', isFallback: false})).rejects.toThrow(
+        'Could not get messages since git tag "v1.2.3" to determine next version.',
+      );
     });
   });
 
