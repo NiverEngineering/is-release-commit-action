@@ -1,6 +1,6 @@
 {
   "name": "is-release-commit-action",
-  "version": "1.3.9",
+  "version": "1.4.0",
   "main": "dist/action.js",
   "type": "commonjs",
   "scripts": {

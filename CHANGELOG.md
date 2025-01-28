@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.0](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.9...v1.4.0) (2025-01-28)
+
+
+### 🚀 Features
+
+* Add `is-fallback-tag` to outputs ([52d8aad](https://github.com/NiverEngineering/is-release-commit-action/commit/52d8aadbe8d85b0f713e6029e118f6653d67c45d))
+
+
+### 🐛 Bug Fixes
+
+* Fix first build if no tag is present yet ([73bd090](https://github.com/NiverEngineering/is-release-commit-action/commit/73bd0901681ebaa292402edc47560dd7020f5c5a))
+* Make calculating next version work in new repo without any tags ([5856fe6](https://github.com/NiverEngineering/is-release-commit-action/commit/5856fe6d0b38e2c331e2632128fe2b0f5fc47a62))
+
+
+### 📦 Build System & Dependencies
+
+* **deps:** Update dependencies ([106a77e](https://github.com/NiverEngineering/is-release-commit-action/commit/106a77e0226288d4c7ca84d85643c5a0652fd7c8))
+
 ## [1.3.9](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.8...v1.3.9) (2025-01-17)
 
 
