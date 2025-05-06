@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.1](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.4.0...v1.4.1) (2025-05-06)
+
+
+### 📦 Build System & Dependencies
+
+* **deps-dev:** Bump @typescript-eslint/eslint-plugin ([4b0eef5](https://github.com/NiverEngineering/is-release-commit-action/commit/4b0eef5ee290ed8e0fdb8a639841cea9eaf9f7a9))
+* **deps-dev:** Bump typescript-eslint from 8.22.0 to 8.26.1 ([470a007](https://github.com/NiverEngineering/is-release-commit-action/commit/470a007eaa2e292e38131e1b4c133ac25a1fce7f))
+
 ## [1.4.0](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.3.9...v1.4.0) (2025-01-28)
 
 
