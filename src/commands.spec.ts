@@ -65,34 +65,68 @@ describe('commands', () => {
     });
   });
 
-  describe('isReleaseCommit', () => {
-    it('return true for a tag starting with "v" and pointing at HEAD', async () => {
-      mockExecCallWith({
-        stdout: `a7730ce591e5494a455a5283d75eddca8dc80b98 commit refs/tags/v1.2.3`,
-      });
+  it('returns true for valid single-digit semver tag', async () => {
+    mockExecCallWith({stdout: 'refs/tags/v1.2.3'});
 
-      expect(await isReleaseCommit('v')).toBe(true);
+    await expect(isReleaseCommit('v')).resolves.toBe(true);
+  });
+
+  it('returns true for multi-digit semver tag', async () => {
+    mockExecCallWith({stdout: 'refs/tags/v12.34.56'});
+
+    await expect(isReleaseCommit('v')).resolves.toBe(true);
+  });
+
+  it('returns false for invalid semver format', async () => {
+    mockExecCallWith({stdout: 'refs/tags/v12.34'});
+
+    await expect(isReleaseCommit('v')).resolves.toBe(false);
+  });
+
+  it('returns false when no tags exist', async () => {
+    mockExecCallWith({stdout: ''});
+
+    await expect(isReleaseCommit('v')).resolves.toBe(false);
+  });
+
+  it('returns false when prefix does not match', async () => {
+    mockExecCallWith({stdout: 'refs/tags/x1.2.3'});
+
+    await expect(isReleaseCommit('v')).resolves.toBe(false);
+  });
+
+  it('returns true when multiple lines include valid tag', async () => {
+    mockExecCallWith({
+      stdout: `
+refs/tags/dev
+refs/tags/v2.0.0
+refs/tags/other
+    `.trim(),
     });
 
-    it('return false if no tag starting with "v" and pointing at HEAD could be found', async () => {
-      mockExecCallWith({
-        stdout: ``,
-      });
+    await expect(isReleaseCommit('v')).resolves.toBe(true);
+  });
 
-      expect(await isReleaseCommit('v')).toBe(false);
+  it('returns false when multiple tags exist but none match regex', async () => {
+    mockExecCallWith({
+      stdout: `
+refs/tags/dev
+refs/tags/v2.0
+refs/tags/test
+    `.trim(),
     });
 
-    it('return false if no tag starting with "v" and pointing at HEAD could be found', async () => {
-      mockExecCallWith({
-        error: Error('Something went wrong...'),
-      });
+    await expect(isReleaseCommit('v')).resolves.toBe(false);
+  });
 
-      await expect(isReleaseCommit('v')).rejects.toThrow('Could not determine whether the current commit is a release commit!');
-    });
+  it('throws error when exec fails', async () => {
+    mockExecCallWith({error: new Error('git failed')});
+
+    await expect(isReleaseCommit('v')).rejects.toThrow('Could not determine whether the current commit is a release commit!');
   });
 
   describe('getNextSemanticVersion', () => {
-    it('should leave the version unchanged if there ar no commits since the last release', async () => {
+    it('should leave the version unchanged if there are no commits since the last release', async () => {
       mockExecCallWith({
         stdout: ``,
       });

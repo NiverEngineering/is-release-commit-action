@@ -56,11 +56,13 @@ export const getLatestReleaseTag: (
 
 export const isReleaseCommit: (tagPrefix: string) => Promise<boolean> = async (tagPrefix) => {
   try {
-    return (await exec(`git for-each-ref --points-at HEAD 'refs/tags/${tagPrefix ?? ''}[0-9].[0-9].[0-9]*'`)).stdout.length > 0;
+    const {stdout} = await exec(`git for-each-ref --points-at HEAD --format='%(refname)'`);
+
+    const regex = new RegExp(`^refs/tags/${tagPrefix}\\d+\\.\\d+\\.\\d+$`);
+
+    return stdout.split('\n').some((line) => regex.test(line));
   } catch (error) {
-    if (error instanceof Error) {
-      core.error(error);
-    }
+    if (error instanceof Error) core.error(error);
 
     throw Error('Could not determine whether the current commit is a release commit!');
   }
