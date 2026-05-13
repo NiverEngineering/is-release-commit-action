@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.5.0...v1.5.1) (2026-05-13)
+
+
+### 🐛 Bug Fixes
+
+* Add missing dist/ content ([882e69e](https://github.com/NiverEngineering/is-release-commit-action/commit/882e69e33c7654151e30ae82a97fca93fbdf7b00))
+
 ## [1.5.0](https://github.com/NiverEngineering/is-release-commit-action/compare/v1.4.0...v1.5.0) (2026-05-12)
 
 
