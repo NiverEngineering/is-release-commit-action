@@ -57,6 +57,9 @@ export const getLatestReleaseTag: (
 export const isReleaseCommit: (tagPrefix: string) => Promise<boolean> = async (tagPrefix) => {
   try {
     const {stdout} = await exec(`git for-each-ref --points-at HEAD --format='%(refname)'`);
+    core.startGroup('Found the following git references that point to HEAD');
+    core.info(`${stdout}`);
+    core.endGroup();
 
     const regex = new RegExp(`^refs/tags/${tagPrefix}\\d+\\.\\d+\\.\\d+$`);
 
